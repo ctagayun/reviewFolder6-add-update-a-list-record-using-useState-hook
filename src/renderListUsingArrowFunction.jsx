@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ItemMemoized } from './item';
+import Item from './item.jsx';
 
 const RenderListUsingArrowFunction = ({list, onRemoveItem}) => {
   //Note: all function components by convention receive "props" even 
@@ -27,7 +27,7 @@ const RenderListUsingArrowFunction = ({list, onRemoveItem}) => {
             </thead>
             <tbody>
               {list.map((item) => (
-                <ItemMemoized
+                <Item
                       key={item.objectID}
                       objectID={item.objectID} 
                       item={item}

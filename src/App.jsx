@@ -27,7 +27,6 @@ import './App.css'
 import { v4 as uuidv4 } from 'uuid';
 
 import RenderListUsingArrowFunction from "./renderListUsingArrowFunction.jsx";
-import RenderListUsingJSFunction from "./renderListUsingJSFunction.jsx";
 
 
 const initialList = [
@@ -88,13 +87,13 @@ function App() {
 
   //Next make the list stateful and add an input field button in the 
   //renderListUsingArrowFunction component
-  const [updatedList, setList] = React.useState(initialList);
+  const [updatedList, updateInitialList] = React.useState(initialList);
 
   //Before we can add an item, we need to track the "input field's" state, 
   //because without the value from the input field, we don't have any text 
   //to give the item which we want to add to our list. So let's add some 
   //state management to this first:
-  const [title,setTitle] = React.useState('');
+  const [title, setTitle] = React.useState('');
 
   //Function to delete a a record from the initialList list
   const handleDeleteRecord = (item) => {
@@ -102,7 +101,7 @@ function App() {
     const newList = updatedList.filter(
       (story) => item.objectID !== story.objectID
     );
-    setList(newList);
+    updateInitialList(newList);
   };
   
   //Function to handle add a record
@@ -113,15 +112,16 @@ function App() {
   //name 'title' equals the object's property name. Then we are using the state updater 
   //function to pass in the new list.
   const handleAddRecord = () => {
-    console.log(`Item being Added`);
-    const newList = list.concat({ title, id: uuidv4 });
-    setList(newList);
-    setTitle('');
+    console.log(`Item being Added: ${title}`);
+    const newList = updatedList.concat({ title, id: uuidv4 }); //updatedList is the useState for initialList
+    updateInitialList(newList); //update the state value of the "initialList object" 
+    setTitle('');  //reset the input box to null
   };
 
   //Track changes to the input text box
   const handleChange = (event) => {
-   setTitle(event.target.value);
+     console.log(`Value of title input field: ${event.target.value} `)
+     setTitle(event.target.value);
   };
 
   const searchedList = updatedList.filter((story) =>
@@ -147,7 +147,7 @@ function App() {
        <hr/>
        <div>
          <input type="text" value={title} onChange={handleChange} />
-           <button type="button" onClick={handleAddRecord}>
+           <button type="button" className="btn btn-primary" onClick={handleAddRecord}>
              Add
            </button>
         </div>

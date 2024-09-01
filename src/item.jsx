@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 //Create another component that will display list of stories.
 //This component called "Item" encapsulates the task of displaying 
 //each 'Item' record
@@ -49,12 +48,4 @@ const Item = ({item, onRemoveItem, handleAdd, onChange }) => (
      
 );
 
-//Memoizing is way to cache the output of JSX component 
-//so that it doesn't re-render. It is done by wrapping the 
-//component with React.memo hook
-const ItemMemoized = React.memo(Item)
-
 export default Item;
-//exporting the memoized version will let you use that 
-//version in the Item
-export {ItemMemoized}; 
