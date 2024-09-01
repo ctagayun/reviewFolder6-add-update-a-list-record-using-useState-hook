@@ -113,7 +113,7 @@ function App() {
   //function to pass in the new list.
   const handleAddRecord = () => {
     console.log(`Item being Added: ${title}`);
-    const newList = updatedList.concat({ title, id: uuidv4 }); //updatedList is the useState for initialList
+    const newList = updatedList.concat({ title, objectID: uuidv4() }); //updatedList is the useState for initialList
     updateInitialList(newList); //update the state value of the "initialList object" 
     setTitle('');  //reset the input box to null
   };
