@@ -24,6 +24,7 @@
 import * as React from 'react';
 import Search from './search.jsx';
 import './App.css'
+import { v4 as uuidv4 } from 'uuid';
 
 import RenderListUsingArrowFunction from "./renderListUsingArrowFunction.jsx";
 import RenderListUsingJSFunction from "./renderListUsingJSFunction.jsx";
@@ -32,18 +33,10 @@ import RenderListUsingJSFunction from "./renderListUsingJSFunction.jsx";
 const initialList = [
   {
     title: 'React',
-    url: 'https://reactjs.org/',
-    author: 'Jordan Walke',
-    num_comments: 3,
-    points: 4,
     objectID: 0,
   },
   {
     title: 'Redux',
-    url: 'https://redux.js.org/',
-    author: 'Dan Abramov, Andrew Clark',
-    num_comments: 2,
-    points: 5,
     objectID: 1,
   },
 ];
@@ -80,8 +73,8 @@ const initialList = [
 function App() {
 
   const welcome = {
-     greeting: 'Hey',
-     title: "Chito",
+     greeting: 'Demo',
+     title: "Add Item To List",
   };
   
   let searchKey= 'search';
@@ -93,11 +86,15 @@ function App() {
   //searchTerm, setSearchTerm respectively
   const [searchTerm, setSearchTerm] = useStorageState(searchKey, defaultState)
 
-  //Now create another state for the initialList list for the 
-  //purpose of preserving the initialList list. We are just deleting 
-  //the records from localStorage
+  //Next make the list stateful and add an input field button in the 
+  //renderListUsingArrowFunction component
   const [updatedList, setList] = React.useState(initialList);
 
+  //Before we can add an item, we need to track the "input field's" state, 
+  //because without the value from the input field, we don't have any text 
+  //to give the item which we want to add to our list. So let's add some 
+  //state management to this first:
+  const [title,setTitle] = React.useState('');
 
   //Function to delete a a record from the initialList list
   const handleDeleteRecord = (item) => {
@@ -106,6 +103,25 @@ function App() {
       (story) => item.objectID !== story.objectID
     );
     setList(newList);
+  };
+  
+  //Function to handle add a record
+  //Next, whenever someone clicks the Add button in renderListUsingArrowFunction.jsx , 
+  //we can add the title entered into the input field as a new item to the list:
+
+  //We are using object property shorthand initialization here, because the variable 
+  //name 'title' equals the object's property name. Then we are using the state updater 
+  //function to pass in the new list.
+  const handleAddRecord = () => {
+    console.log(`Item being Added`);
+    const newList = list.concat({ title, id: uuidv4 });
+    setList(newList);
+    setTitle('');
+  };
+
+  //Track changes to the input text box
+  const handleChange = (event) => {
+   setTitle(event.target.value);
   };
 
   const searchedList = updatedList.filter((story) =>
@@ -125,12 +141,24 @@ function App() {
        
        {/* searchTerm is the return value from useStorageState custom hook. */}
       <Search id="search" value={searchTerm}  isFocused  onInputChange={handleSearch} >
-         <strong>Searchx:</strong>
+         <strong>Search:</strong>
       </Search>
 
        <hr/>
+       <div>
+         <input type="text" value={title} onChange={handleChange} />
+           <button type="button" onClick={handleAddRecord}>
+             Add
+           </button>
+        </div>
 
-       <RenderListUsingArrowFunction list={searchedList} onRemoveItem={handleDeleteRecord} />
+       {/*We have made the input field "title" a controlled element, because 
+         it receives its internal value from React's state now. */}
+       <RenderListUsingArrowFunction list={searchedList} 
+                             onRemoveItem={handleDeleteRecord}
+                             title={title} />
+
+    
         
     </div>
   )

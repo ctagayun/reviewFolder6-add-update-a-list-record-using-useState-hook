@@ -712,4 +712,7 @@ REVIEW FOLDER5 - Inline handlers, useRef, memoizing, react.children
             like onClick={() => myFunction()}.
 
 REVIEW FOLDER6 - Add, Update, Delete List Record and reducerHook
-  - 
+  - To add a record: 
+      - make the list stateful by making use of useState Hook
+        see: https://www.robinwieruch.de/react-usestate-hook/
+             https://www.robinwieruch.de/react-usereducer-hook/

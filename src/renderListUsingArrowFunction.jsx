@@ -1,10 +1,11 @@
 import * as React from "react";
 import { ItemMemoized } from './item';
+
 const RenderListUsingArrowFunction = ({list, onRemoveItem}) => {
   //Note: all function components by convention receive "props" even 
   //if the function doesn't have the param "props 
     return (
-        <>
+      <>
           <div className="row mb-2">
             <h5 className="themeFontColor text-center">
                Stories currently in the catalog
@@ -35,6 +36,7 @@ const RenderListUsingArrowFunction = ({list, onRemoveItem}) => {
               ))}
             </tbody>
           </table>
+      
       </>
 
     );

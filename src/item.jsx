@@ -29,23 +29,24 @@ import * as React from 'react';
 
 //The second and more popular solution is to use an inline arrow function, which allows
 //us to sneak in arguments like the item:
-const Item = ({item, onRemoveItem }) => (
+const Item = ({item, onRemoveItem, handleAdd, onChange }) => (
     <tr>
      <td>{item.title}</td>
-     <td>{item.url}</td>
+     {/* <td>{item.url}</td>
      <td>{item.author}</td>
      <td>{item.num_comments}</td>
-     <td>{item.points}</td>
+     <td>{item.points}</td> */}
      <td>{item.objectID}</td>
      <span>
-     {/* <button type="button" onClick={onRemoveItem.bind(null, item)}> */}
-      <button className="btn btn-primary" type="button" onClick={() => onRemoveItem(item)}>
-        Delete
-      </button>
-    </span>
-      
+      {/* <button type="button" onClick={onRemoveItem.bind(null, item)}> */}
+        <button className="btn btn-primary" type="button" onClick={() => onRemoveItem(item)}>
+          Delete
+        </button>
+    
+      </span>
     </tr>
- 
+
+     
 );
 
 //Memoizing is way to cache the output of JSX component 
