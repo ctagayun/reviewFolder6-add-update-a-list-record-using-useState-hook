@@ -147,7 +147,8 @@ function App() {
        <hr/>
        <div>
          <input type="text" value={title} onChange={handleChange} />
-           <button type="button" className="btn btn-primary" onClick={handleAddRecord}>
+           <button type="button" className="btn btn-primary"
+                   onClick={handleAddRecord}>
              Add
            </button>
         </div>

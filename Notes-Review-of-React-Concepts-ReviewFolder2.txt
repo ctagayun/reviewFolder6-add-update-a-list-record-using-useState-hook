@@ -723,3 +723,9 @@ REVIEW FOLDER6 - Add, Update, Delete List Record and reducerHook
 
   - Add record using reducerHook
       - https://www.robinwieruch.de/react-add-item-to-list/
+
+
+  - Binding Functions and Enable/Disable State in HTML Buttons with React.js
+      - https://www.pluralsight.com/resources/blog/guides/binding-functions-and-enabledisable-state-in-html-buttons-with-reactjs
+
+      - first define state value
