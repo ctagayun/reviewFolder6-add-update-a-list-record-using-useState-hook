@@ -73,7 +73,7 @@ function App() {
 
   const welcome = {
      greeting: 'Demo',
-     title: "Add Item To List",
+     title: "Add Item To List Using Simple Object",
   };
   
   let searchKey= 'search';
@@ -98,7 +98,7 @@ function App() {
   //Function to delete a a record from the initialList list
   const handleDeleteRecord = (item) => {
     console.log(`Item being deleted =  ${item.objectID} ${item.author}`);
-    const newList = updatedList.filter(
+    const newList = updatedList.filter( //this creates a new array called story
       (story) => item.objectID !== story.objectID
     );
     updateInitialList(newList);
